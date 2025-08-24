@@ -16,8 +16,31 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.shortcuts import render
+from django.http import HttpResponse
+
+# Views
+def home(request):
+    return render(request, "home.html")
+
+# Temporary placeholders (to avoid NoReverseMatch)
+def login_view(request):
+    return HttpResponse("Login Page Coming Soon")
+
+def signup_view(request):
+    return HttpResponse("Signup Page Coming Soon")
+
+def logout_view(request):
+    return HttpResponse("Logout Success")
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("users/", include("users.urls")),  # include users app routes
+    path("", home, name="home"),
+    path("login/", login_view, name="login"),
+    path("signup/", signup_view, name="signup"),
+    path("logout/", logout_view, name="logout"),
+    path('dashboard/', include('dashboard.urls')),
 ]
+# if settings.DEBUG:  # Only for development
+#     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+#     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

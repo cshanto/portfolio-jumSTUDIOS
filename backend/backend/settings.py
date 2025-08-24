@@ -11,9 +11,23 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Static files (CSS, JavaScript, Images)
+STATIC_URL = '/static/'
+
+# Development static files (optional, where you keep your custom static assets)
+STATICFILES_DIRS = [BASE_DIR / "static",  ]
+
+# Where collectstatic will put everything (for deployment/production)
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
+# Media files (user uploads like images, videos)
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / "media"
 
 
 # Quick-start development settings - unsuitable for production
@@ -40,9 +54,8 @@ INSTALLED_APPS = [
     
     # Our custom apps
     'users',
-    'services',
-    'orders',
     'dashboard',
+    'services',
 ]
 
 MIDDLEWARE = [
@@ -120,7 +133,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = 'static/'
+# STATIC_URL = '/static/'
+# STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field

@@ -1,6 +1,4 @@
-from django.apps import AppConfig
+from django.shortcuts import render
 
-
-class DashboardConfig(AppConfig):
-    default_auto_field = 'django.db.models.BigAutoField'
-    name = 'dashboard'
+def dashboard_view(request):
+    return render(request, 'dashboard/dashboard.html')
