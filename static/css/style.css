@@ -1,0 +1,250 @@
+/* =========================
+   RESET + BASE
+========================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100%;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  scroll-behavior: smooth;
+  overflow-x: hidden; /* prevent horizontal scrollbar */
+}
+
+/* NAVBAR height */
+:root {
+  --nav-height: 64px;
+}
+
+/* =========================
+   THEME VARIABLES (light default)
+========================= */
+:root {
+  --bg: #ffffff;
+  --text: #111111;
+  --nav-bg: #f8f9fa;
+  --footer-bg: #f8f9fa;
+  --hero-overlay: rgba(0,0,0,0.4);
+  --hero-text: #ffffff;
+}
+
+/* Dark theme variables (applied when body.dark-theme exists) */
+body.dark-theme {
+  --bg: #111111;
+  --text: #f5f5f5;
+  --nav-bg: #1e1e1e;
+  --footer-bg: #1e1e1e;
+  --hero-overlay: rgba(0,0,0,0.45);
+}
+
+/* Apply theme */
+body {
+  background: var(--bg);
+  color: var(--text);
+  transition: background 300ms ease, color 300ms ease;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding-top: var(--nav-height); /* keep content below fixed navbar */
+}
+
+/* main content container (so footer naturally sits at bottom) */
+.site-main {
+  flex: 1 0 auto;
+  width: 100%;
+}
+
+/* =========================
+   NAVBAR (fixed, aligned)
+========================= */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--nav-height);
+  z-index: 1100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 22px;
+  background: var(--nav-bg);
+  color: var(--text);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+
+/* left: logo + brand */
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.nav-left a { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.logo {
+  height: 40px;
+  width: auto;
+  display: block;
+}
+.brand {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1;
+  text-decoration: none; /* no underline */
+}
+
+/* right: links + theme button */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.nav-right a {
+  color: var(--text);
+  text-decoration: none; /* no underline */
+  font-weight: 600;      /* bold links */
+  font-size: 0.95rem;
+}
+
+.nav-right a:hover {
+  opacity: 0.85;
+}
+
+.theme-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.15rem;
+  color: var(--text);
+  padding: 4px;
+}
+
+/* responsive navbar: stack small screens */
+@media (max-width: 768px) {
+  .navbar { padding: 10px 14px; }
+  .nav-right { flex-wrap: wrap; gap: 10px; }
+  .brand { font-size: 1rem; }
+  :root { --nav-height: 72px; }
+  body { padding-top: var(--nav-height); }
+}
+
+/* =========================
+   HERO SECTIONS
+========================= */
+.hero {
+  min-height: calc(100vh - var(--nav-height));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+.hero-1 { background: url("../images/background.jpg") no-repeat center/cover; }
+.hero-2 { background: url("../images/background1.jpg") no-repeat center/cover; }
+.hero-3 { background: url("../images/background2.jpg") no-repeat center/cover; }
+
+/* overlay for readability */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--hero-overlay);
+  z-index: 0;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  color: var(--hero-text);
+  padding: 20px;
+  max-width: 1100px;
+}
+
+/* Video background inside a hero */
+.hero-video { background: none; } /* ensure no image */
+.bg-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  background: none;
+}
+
+/* =========================
+   FOOTER
+========================= */
+.footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 40px;
+  width: 100%;
+  background: var(--footer-bg);
+  color: var(--text);
+  gap: 20px;
+  flex-wrap: wrap;
+  box-shadow: 0 -1px 3px rgba(0,0,0,0.04);
+}
+
+.footer-section {
+  flex: 1 1 220px;
+  min-width: 200px;
+}
+
+.footer-section h4 {
+  margin-bottom: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+/* icons (do NOT invert) */
+.social-icons,
+.payment-icons {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.social-icons img,
+.payment-icons img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  display: block;
+  transition: transform .18s ease;
+}
+.social-icons img:hover,
+.payment-icons img:hover { transform: scale(1.08); }
+
+/* responsive */
+@media (max-width: 768px) {
+  .footer { padding: 18px 16px; flex-direction: column; align-items: center; text-align: center; }
+  .footer-section { min-width: auto; width: 100%; }
+}
+
+/* =========================
+   HIDE SCROLLBAR BUT RETAIN SCROLLING (FUTURE-PROOF)
+========================= */
+
+/* Apply to body only, leave html alone to avoid layout shifts */
+body {
+  overflow-y: scroll;          /* allow vertical scrolling */
+  scrollbar-width: none;       /* Firefox */
+  -ms-overflow-style: none;    /* IE 10+ */
+  overscroll-behavior: auto;   /* future-proof scrolling */
+}
+
+/* Hide scrollbar in Chrome, Safari, Edge */
+body::-webkit-scrollbar {
+  width: 0;                     /* removes scrollbar width */
+  height: 0;                    /* also hide horizontal if exists */
+  background: transparent;      /* avoid color flash */
+}

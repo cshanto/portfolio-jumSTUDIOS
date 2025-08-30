@@ -1,0 +1,19 @@
+{% load static %}
+<nav class="navbar" role="navigation" aria-label="Main navigation">
+  <div class="nav-left">
+    <a href="/">
+      <img src="{% static 'images/logo.png' %}" alt="Alphine Studios Logo" class="logo">
+      <span class="brand">AlphineSTUDIOS</span>
+    </a>
+  </div>
+
+  <div class="nav-right" role="menu">
+    <a href="/">Home</a>
+    <a href="/services/">Services</a>
+    <a href="/about/">About</a>
+    <a href="/contact/">Contact</a>
+    <a href="/signup/">Sign Up</a>
+    <a href="/login/">Sign In</a>
+    <button id="theme-toggle" class="theme-btn" aria-pressed="false">🌙</button>
+  </div>
+</nav>

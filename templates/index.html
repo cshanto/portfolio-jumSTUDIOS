@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+<section class="hero hero-1">
+  <div class="hero-content">
+    <h1>WHO WE ARE</h1>
+    <p>We create amazing experiences for brands.</p>
+  </div>
+</section>
+
+<section class="hero hero-video">
+  <video class="bg-video" autoplay muted loop playsinline poster="{% static 'images/background.jpg' %}">
+    <source src="{% static 'videos/preview.mp4' %}" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <div class="hero-content">
+    <h1>Video Preview</h1>
+    <p>See our demo reel.</p>
+  </div>
+</section>
+
+<section class="hero hero-2">
+  <div class="hero-content">
+    <h1>OUR SERVICES</h1>
+    <p>We build creative digital solutions...</p>
+  </div>
+</section>
+
+<section class="hero hero-3">
+  <div class="hero-content">
+    <h1>WHAT WE DELIVER</h1>
+    <p>High-quality, scalable results.</p>
+  </div>
+</section>
+
+{% endblock %}
