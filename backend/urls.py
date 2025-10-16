@@ -18,6 +18,8 @@ from django.contrib import admin
 from django.urls import path, include
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.conf import settings
+from django.conf.urls.static import static
 
 # Views
 def home(request):
@@ -41,6 +43,6 @@ urlpatterns = [
     path("logout/", logout_view, name="logout"),
     path('dashboard/', include('dashboard.urls')),
 ]
-# if settings.DEBUG:  # Only for development
-#     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-#     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+if settings.DEBUG:  # Only for development
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
